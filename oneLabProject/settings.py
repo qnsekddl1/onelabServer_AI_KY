@@ -148,13 +148,13 @@ DATABASES = {
         # DBMS 모듈 경로
         'ENGINE': 'django.db.backends.mysql',
         # DATABASE 이름
-        'NAME': 'ai1',
+        'NAME': 'ai',
         # 계정 이름
-        'USER': 'ai1',
+        'USER': 'ai',
         # 비밀번호
         'PASSWORD': '1234',
         # DBMS가 설치된 서버 PC의 IP
-        'HOST': '43.201.28.101',
+        'HOST': '3.36.95.181',
         # DBMS의 포트번호
         'PORT': '3306',
         # 'OPTIONS': {
