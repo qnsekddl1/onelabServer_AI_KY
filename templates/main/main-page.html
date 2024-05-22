@@ -1,0 +1,1732 @@
+{% extends 'login/base.html' %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'member/css/main/main-page.css' %}" />
+{% endblock %}
+
+{% block title %}로그인{% endblock %}
+{% block content %}
+    <!--헤더-->
+    {% if request.session.member %}
+        {% include  "header/main-page-header-login.html"%}
+    {% else %}
+        {% include "header/main-page-header-all.html" %}
+    {% endif %}
+{#    {% include "header/main-page-header-final.html" %}#}
+{#        <div>#}
+{#            <div class="web-header">#}
+{#                <div class="web-header-large">#}
+{#                    <header class="header-wrapper">#}
+{#                        <div class="header-container">#}
+{#                            <h1 class="wadiz-logo">#}
+{#                                <a href="">#}
+{#                                    <span class="label">원랩</span>#}
+{#                                    <img id="one-lab" src="/staticfiles/images/header-logo_RE.png" alt="" />#}
+{#                                </a>#}
+{#                            </h1>#}
+{#                            <!--메뉴 탭-->#}
+{#                            <ul class="desktop-container">#}
+{#                                <!--원랩-->#}
+{#                                <li class="desktop-item">#}
+{#                                    <a class="desktop-link" href=""><span>원랩</span></a>#}
+{#                                </li>#}
+{#                                <!--공지-->#}
+{#                                <li class="desktop-item">#}
+{#                                    <a class="desktop-link" href=""><span>공지</span></a>#}
+{#                                </li>#}
+{#                                <!--장소공유-->#}
+{#                                <li class="desktop-item">#}
+{#                                    <a class="desktop-link" href=""><span>장소공유</span></a>#}
+{#                                </li>#}
+{#                                <!--커뮤니티-->#}
+{#                                <li class="desktop-item">#}
+{#                                    <a class="desktop-link" href=""><span>커뮤니티</span></a>#}
+{#                                </li>#}
+{#                                <!--학교-->#}
+{#                                <li class="desktop-item">#}
+{#                                    <a class="desktop-link" href=""><span>학교</span></a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                            <div class="web-header-utils">#}
+{#                                <!--검색창-->#}
+{#                                <div class="desktop-search-app-container">#}
+{#                                    <form>#}
+{#                                        <div class="search-controller-container" tabindex="-1">#}
+{#                                            <div class="search-tag-empty-tag"></div>#}
+{#                                            <div class="search-controller-keyword">#}
+{#                                                <input#}
+{#                                                    type="search"#}
+{#                                                    placeholder="새로운 일상이 필요하신가요?"#}
+{#                                                    aria-label="검색"#}
+{#                                                    value=""#}
+{#                                                />#}
+{#                                            </div>#}
+{#                                            <button#}
+{#                                                type="submit"#}
+{#                                                class="search-controller-search-icon"#}
+{#                                                aria-label="검색"#}
+{#                                            >#}
+{#                                                <svg#}
+{#                                                    viewBox="0 0 40 40"#}
+{#                                                    focusable="false"#}
+{#                                                    role="presentation"#}
+{#                                                    class="withicon-icon"#}
+{#                                                    aria-hidden="true"#}
+{#                                                    style="width: 24px; height: 24px;"#}
+{#                                                >#}
+{#                                                    <path fill="none" d="M0 0h40v40H0z"></path>#}
+{#                                                    <path#}
+{#                                                        d="M29.2 27.91a14.38 14.38 0 1 0-1.42 1.4l7.16 7.15.07.08 1.41-1.41zM18.45 6a12.36 12.36 0 0 1 8.35 3.23 12.24 12.24 0 0 1 4 8.59A12.39 12.39 0 1 1 17.88 6z"#}
+{#                                                    ></path>#}
+{#                                                </svg>#}
+{#                                            </button>#}
+{#                                        </div>#}
+{#                                    </form>#}
+{#                                </div>#}
+{#                                <!--로그인 회원가입-->#}
+{#                                <div class="header-desktop-user">#}
+{#                                    <div class="user-container">#}
+{#                                        <button type="button" class="user-btn-sign">로그인</button#}
+{#                                        ><button data-event="iam.signup" class="user-btn-sign">회원가입</button>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <!--포인트 충전-->#}
+{#                                <div class="charge-point">#}
+{#                                    <button aria-label="포인트 충전" class="charge-point-button" type="button">#}
+{#                                        <span><span class="button-children">포인트 충전</span></span>#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </header>#}
+{#                </div>#}
+{#            </div>#}
+{#            <!--헤더 상세 컨텐츠-->#}
+{#            <div class="main-wrapper-content"></div>#}
+{#            <div>#}
+{#                <div class="categorybar-container">#}
+{#                    <div class="categorybar-main-categories-wrapper">#}
+{#                        <ul class="categorybar-main-categories">#}
+{#                            <li class="categorybar-main-category">장소공유목록</li>#}
+{#                            <li class="categorybar-main-category">원랩목록</li>#}
+{#                            <li class="categorybar-main-category">질의응답</li>#}
+{#                            <li class="categorybar-main-category">자료공유</li>#}
+{#                            <li class="categorybar-main-category">공모전·대회</li>#}
+{#                            <li class="categorybar-main-category">회사소개</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div>#}
+            <!--배너-->
+            <div>
+                <div class="keyvisualbanner-container">
+                    <div class="slick-slider" dir="ltr">
+                        <button type="button" data-role="none" class="slick-prev" style="display: block;">
+                            Previous
+                        </button>
+                        <div class="slick-list">
+                            <div class="slick-track">
+                                <div class="slick-slide slick-cloned" aria-hidden="true" style="width: 2000px;">
+                                    <div>
+                                        <div>
+                                            <a href="" class="visualslide-container">
+                                                <img
+                                                    src="{% static 'public/images/banner-main1.png' %}"
+                                                    alt=""
+                                                    class="main-banner-img"
+                                                />
+                                                <div class="visualslide-wrap">
+                                                    <div class="visualslide-text">
+{#                                                        <p class="visualslide-title">#}
+{#                                                            원랩의 존재하는 이유 <br /> 자신의 경력을 쌓다!!!!#}
+{#                                                        </p>#}
+                                                    </div>
+                                                </div></a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slick-slide" aria-hidden="true" style="outline: none; width: 2000px;">
+                                    <div>
+                                        <div>
+                                            <a href="" class="visualslide-container">
+                                                <img
+                                                    src="{% static 'public/images/banner-main2.png' %}"
+                                                    alt=""
+                                                    class="main-banner-img"
+                                                />
+                                                <div class="visualslide-wrap">
+                                                    <div class="visualslide-text">
+{#                                                        <p class="visualslide-title">#}
+{#                                                            매일 새로운 공모전<br />많은 혜택런을 포함#}
+{#                                                        </p>#}
+{#                                                        <p class="visualslide-badge">이벤트</p>#}
+                                                    </div>
+                                                </div></a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slick-slide" aria-hidden="true" style="outline: none; width: 2000px;">
+                                    <div>
+                                        <div>
+                                            <a href="" class="visualslide-container">
+                                                <img
+                                                    src="{% static 'public/images/banner-main3.png' %}"
+                                                    alt=""
+                                                    class="main-banner-img"
+                                                />
+                                                <div class="visualslide-wrap"> 
+                                                    <div class="visualslide-text">
+{#                                                        <p class="visualslide-title">#}
+{#                                                            모든 대학생 회원들은 오라~ <br />실전을 통해 경력을 쌓자!!!#}
+{#                                                        </p>#}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" data-role="none" class="slick-next" style="display: block;">Next</button>
+                    </div>
+                    <div class="keyvisualbanner-wrap">
+                        <div class="keyvisualbanner-arrows">
+                            <!-- 좌측버튼 -->
+                            <button class="left-keyvisualbanner-button btns" type="button">
+                                <span
+                                    ><span class="button-children"
+                                        ><svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon left"
+                                            aria-hidden="true"
+                                            style="width: 24px; height: 24px;"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                clip-rule="evenodd"
+                                                d="M16.076 2.576l.848.848L8.35 12l8.575 8.576-.848.848L6.65 12l9.425-9.424z"
+                                            ></path>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                            <!-- 우측버튼 -->
+                            <button class="right-keyvisualbanner-button btns" type="button">
+                                <span
+                                    ><span class="button-children"
+                                        ><svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon right"
+                                            aria-hidden="true"
+                                            style="width: 24px; height: 24px;"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                clip-rule="evenodd"
+                                                d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                            ></path></svg></span
+                                ></span>
+                            </button>
+                        </div>
+                        <div class="keyvisualbanner-navigation">
+                            <div class="banner-bar" style="width: 125px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <!--바디 부분 
+                취향 맞춤 프로젝트-->
+            <div class="recommendation-desktop-container">
+                <div class="main-wrap">
+                    <div class="recommendation-desktop-inner-group-main-inner-wrap">
+                        <div class="recommend-funding-wrap-container">
+                            <div class="recommend-funding-wrap-title-box">
+                                <div class="recommend-funding-wrap-subtitle">
+                                    <h2 class="recommend-funding-wrap-title">취향 맞춤 프로젝트</h2>
+                                    <p class="recommend-funding-wrap-description">지금 함께 만드는 성공</p>
+                                </div>
+                                <!--ai 맞춤 툴팁 도움말-->
+                                <div class="recommend-funding-wrap-tooltip">
+                                    <div class="tooltip-symbol" aria-describedby="recommendationFundingWaAiTooltip">
+                                        <span class="ai-tooltip-icon"></span>
+                                        <div aria-hidden="true" style="display: none;">
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon tooltip-tooltip tooltip-tooltip-active"
+                                                aria-hidden="true"
+                                            >
+                                                <path fill="none" d="M0 0h40v40H0z"></path>
+                                                <path
+                                                    d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <div aria-hidden="true" style="display: block;">
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon tooltip-tooltip"
+                                                aria-hidden="true"
+                                            >
+                                                <path fill="none" d="M0 0h40v40H0z"></path>
+                                                <path
+                                                    d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"
+                                                ></path>
+                                                <path
+                                                    d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div
+                                        role="tooltip"
+                                        id="recommendationFundingWaAiTooltip"
+                                        class="tooltip-messagebox"
+                                        style="width: 235px; display: none;"
+                                    >
+                                        <p>원랩 AI가 서포터님들의 취향을 분석하여 맞춤 프로젝트를 추천해요</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--맞춤 취향 글 목록-->
+                            <div class="recommend-funding-wrap-card-list-group">
+{#                                <div class="recommend-funding-wrap-card" style="width: 253.667px;">#}
+{#                                    <div class="curation-vertical-card-container">#}
+{#                                        <a class="curation-vertical-card-content" href=""#}
+{#                                            ><div class="curation-vertical-card-thumbnail-box">#}
+{#                                                <div class="curation-vertical-card-thumbnail-wrap">#}
+{#                                                    <div class="thumbnail-image-container">#}
+{#                                                        <img class="thumbnail-image" alt="" src="" />#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="curation-vertical-card-info-box">#}
+{#                                                <div class="curation-vertical-card-badge-wrapper">#}
+{#                                                    <span class="label-badge">펀딩</span>#}
+{#                                                </div>#}
+{#                                                <div class="curation-vertical-card-info">#}
+{#                                                    <p class="info-string-wrapper-info-string">23,209% 달성</p>#}
+{#                                                    <strong class="title-title"#}
+{#                                                        >[누적24억]원터치텐트 맞나요? 압도적 개방감에 1분설치#}
+{#                                                        #모어뷰텐트2</strong#}
+{#                                                    >#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="card-spinner-container">#}
+{#                                                <div class="card-spinner-loader" style="width: 32px; height: 32px;">#}
+{#                                                    <svg viewBox="25 25 50 50" aria-label="Loading">#}
+{#                                                        <g class="loader-circular">#}
+{#                                                            <circle#}
+{#                                                                class="loader-path"#}
+{#                                                                cx="50"#}
+{#                                                                cy="50"#}
+{#                                                                r="20"#}
+{#                                                                fill="none"#}
+{#                                                                stroke-width="4"#}
+{#                                                                stroke-miterlimit="10"#}
+{#                                                            ></circle>#}
+{#                                                        </g>#}
+{#                                                    </svg>#}
+{#                                                </div></div#}
+{#                                        ></a>#}
+{#                                    </div>#}
+{#                                </div>#}
+
+                                {% for onelab in onelabs|slice:":4"  %}
+                                    {% with first_onelab_file=onelab.onelabfile_set.first %}
+                                        <div class="recommend-funding-wrap-card" style="width: 253.667px;">
+                                            <div class="curation-vertical-card-container">
+                                                <a class="curation-vertical-card-content" href=""
+                                                    ><div class="curation-vertical-card-thumbnail-box">
+                                                        <div class="curation-vertical-card-thumbnail-wrap">
+                                                             {% if first_onelab_file %}
+                                                                <img class="thumbnail-image" alt="" src="/upload/{{ first_onelab_file.path }}" style="width: 100%; height: 100%"/>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="curation-vertical-card-info-box">
+{#                                                        <div class="curation-vertical-card-badge-wrapper">#}
+{#                                                            <span class="label-badge">예약구매</span>#}
+{#                                                        </div>#}
+                                                        <div class="curation-vertical-card-info">
+                                                            <p class="info-string-wrapper-info-string-wrapper">{{ onelab.onelab_main_title }}</p>
+                                                            <strong class="title-title"
+                                                                >{{ onelab.onelab_content }}</strong
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-spinner-container">
+                                                        <div class="card-spinner-loader" style="width: 32px; height: 32px;">
+                                                            <svg viewBox="25 25 50 50" aria-label="Loading">
+                                                                <g class="loader-circular">
+                                                                    <circle
+                                                                        class="loader-path"
+                                                                        cx="50"
+                                                                        cy="50"
+                                                                        r="20"
+                                                                        fill="none"
+                                                                        stroke-width="4"
+                                                                        stroke-miterlimit="10"
+                                                                    ></circle>
+                                                                </g>
+                                                            </svg>
+                                                        </div></div
+                                                ></a>
+                                            </div>
+                                        </div>
+                                    {% endwith %}
+                                {% endfor %}
+                                <!--광고-->
+                                <div class="ad-planned-card">
+                                    <div class="ad-collection-card">
+                                        <a href=""
+                                            ><article>
+                                                <div class="commons-thumbnail">
+{#                                                    <div aria-hidden="true" class="card-thumbnail-card"></div>#}
+                                                    <img class="card-thumbnail-card" src="{% static 'public/images/main-front-image.png'  %}" alt="">
+                                                </div>
+                                                <div>
+                                                    <span class="card-type-badge">기획전</span
+                                                    ><span class="card-type-title">슈퍼얼리버드 기획전</span>
+                                                </div>
+                                            </article>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recommend-funding-wrap-show-more-outer">
+                                <button
+                                    data-event="web.main.recommendation.more"
+                                    class="recommend-funding-wrap-google-tagged-button"
+                                    type="button"
+                                >
+                                    <span
+                                        ><svg
+                                            viewBox="0 0 40 40"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon button-icon"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M35 16V7l-3.5 3.5A15 15 0 1 0 34.4 24h-2.1a13 13 0 1 1-2.2-12.1L26 16z"
+                                            ></path>
+                                        </svg>
+                                        <span class="button-children">
+                                            <span class="recommend-funding-wrap-font-highlight">AI </span>추천
+                                            더보기<span class="recommend-funding-wrap-pagenum">
+                                                <span class="recommend-funding-wrap-font-highlight">1</span>/3</span
+                                            >
+                                        </span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--바디 부분
+                            실시간 랭킹-->
+                        <div class="ranking-container">
+                            <p class="ranking-funding-wrap-title">실시간 랭킹</p>
+                            <div class="tab-container-container">
+                                <div class="tab-container-tab">
+{#                                    <div>#}
+{#                                        <div class="tab-button-container">#}
+{#                                            <button type="button" title="REWARD" class="tab-button-btn active">#}
+{#                                                조회순#}
+{#                                            </button>#}
+{#                                        </div>#}
+{#                                        <div class="tab-button-container">#}
+{#                                            <button type="button" title="STORE" class="tab-button-btn">인기순</button>#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                </div>
+                                <div class="tab-container-tabList">
+                                    <ol>
+{#                                        <li class="tab-container-list-item">#}
+{#                                            <a class="ranking-card-container" href=""#}
+{#                                                ><div class="ranking-card-content-box">#}
+{#                                                    <div class="ranking-card-order">1</div>#}
+{#                                                    <div class="ranking-card-content">#}
+{#                                                        <strong class="title-title">#}
+{#                                                            돌돌 말리는 가벼운 친환경 보틀! 등산,캠핑에 최적화 된 실리콘#}
+{#                                                            핸디보틀#}
+{#                                                        </strong>#}
+{#                                                        <div class="ranking-card-info-wrapper">#}
+{#                                                            <p class="ranking-card-info-string-wrapper">2,202% 달성</p>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                                <div class="ranking-card-thumbnail-box">#}
+{#                                                    <div class="thumbnail-image-container-ranking-card-thumbnail">#}
+{#                                                        <img class="thumbnail-image" alt="" src="" />#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                                <div class="card-spinner-container">#}
+{#                                                    <div class="card-spinner-loader" style="width: 32px; height: 32px;">#}
+{#                                                        <svg viewBox="25 25 50 50" aria-label="Loading">#}
+{#                                                            <g class="loader-circular">#}
+{#                                                                <circle#}
+{#                                                                    class="loader-path"#}
+{#                                                                    cx="50"#}
+{#                                                                    cy="50"#}
+{#                                                                    r="20"#}
+{#                                                                    fill="none"#}
+{#                                                                    stroke-width="4"#}
+{#                                                                    stroke-miterlimit="10"#}
+{#                                                                ></circle>#}
+{#                                                            </g>#}
+{#                                                        </svg>#}
+{#                                                    </div></div#}
+{#                                            ></a>#}
+{#                                        </li>#}
+                                        {% for place in places|slice:":6"%}
+                                            {% with first_place_file=place.placefile_set.first %}
+                                                <li class="tab-container-list-item">
+                                                    <a class="ranking-card-container" href=""
+                                                        ><div class="ranking-card-content-box">
+                                                           <div class="ranking-card-order">{{ forloop.counter }}</div>
+                                                            <div class="ranking-card-content">
+                                                                <strong class="title-title"
+                                                                    >{{ place.place_title }}</strong
+                                                                >
+                                                                <div class="ranking-card-info-wrapper">
+                                                                    <p class="ranking-card-info-string-wrapper">{{ place.place_points }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ranking-card-thumbnail-box">
+                                                            {% if first_place_file %}
+                                                                <img class="thumbnail-image" alt="" src="/upload/{{ first_place_file.path }}" style="width: 100%; height: 100%"/>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="card-spinner-container">
+                                                            <div class="card-spinner-loader" style="width: 32px; height: 32px;">
+                                                                <svg viewBox="25 25 50 50" aria-label="Loading">
+                                                                    <g class="loader-circular">
+                                                                        <circle
+                                                                            class="loader-path"
+                                                                            cx="50"
+                                                                            cy="50"
+                                                                            r="20"
+                                                                            fill="none"
+                                                                            stroke-width="4"
+                                                                            stroke-miterlimit="10"
+                                                                        ></circle>
+                                                                    </g>
+                                                                </svg>
+                                                            </div></div
+                                                    ></a>
+                                                </li>
+                                            {% endwith %}
+                                        {% endfor %}
+
+{#                                        <li class="tab-container-list-item tab-container-hide">#}
+{#                                            <a class="ranking-card-container" href=""#}
+{#                                                ><div class="ranking-card-content-box">#}
+{#                                                    <div class="ranking-card-order ranking-card-hidden">6</div>#}
+{#                                                    <div class="ranking-card-content">#}
+{#                                                        <strong class="title-title"#}
+{#                                                            >친가.외가 다 탈모 집안이라 만든 두피 샴푸ㅣ경력20년#}
+{#                                                            피부&amp;헤어전문가</strong#}
+{#                                                        >#}
+{#                                                        <div class="ranking-card-info-wrapper">#}
+{#                                                            <p class="ranking-card-info-string-wrapper">2,463% 달성</p>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                                <div class="ranking-card-thumbnail-box">#}
+{#                                                    <div class="thumbnail-image-container-ranking-card-thumbnail">#}
+{#                                                        <img class="thumbnail-image" alt="" src="" />#}
+{#                                                    </div>#}
+{#                                                    <span class="ad-ranking-card">AD</span>#}
+{#                                                </div>#}
+{#                                                <div class="card-spinner-container">#}
+{#                                                    <div class="card-spinner-loader" style="width: 32px; height: 32px;">#}
+{#                                                        <svg viewBox="25 25 50 50" aria-label="Loading">#}
+{#                                                            <g class="loader-circular">#}
+{#                                                                <circle#}
+{#                                                                    class="loader-path"#}
+{#                                                                    cx="50"#}
+{#                                                                    cy="50"#}
+{#                                                                    r="20"#}
+{#                                                                    fill="none"#}
+{#                                                                    stroke-width="4"#}
+{#                                                                    stroke-miterlimit="10"#}
+{#                                                                ></circle>#}
+{#                                                            </g>#}
+{#                                                        </svg>#}
+{#                                                    </div></div#}
+{#                                            ></a>#}
+{#                                        </li>#}
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--바디 스토어 추천 제품-->
+
+                <!--친구 활동 더보기-->
+
+                <!--회원님이 좋아할 프로젝트-->
+
+                <!--펀딩-->
+            </div>
+        </div>
+
+        <!--공모전/대회-->
+        <div class="main-wrap">
+            <div class="main-inner-wrap">
+                <div class="earlybird-container">
+                    <div class="earlybird-desktop-wrap">
+                        <div class="title-title-wrapper">
+                            <h2 class="contest-title">공모전·대회</h2>
+                            <p>전국의 공모전·대회는 여기에서 시작</p>
+                        </div>
+
+{#                        버튼 쪽!! #}
+                         <div class="recommend-funding-wrap-show-more-outer">
+                                <button
+                                    data-event="web.main.recommendation.more"
+                                    class="recommend-funding-wrap-google-tagged-button"
+                                    type="button"
+                                    onclick="location.href='{% url 'member:login' %}'"
+                                >
+                                    <span
+                                        ><svg
+                                            viewBox="0 0 40 40"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon button-icon"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M35 16V7l-3.5 3.5A15 15 0 1 0 34.4 24h-2.1a13 13 0 1 1-2.2-12.1L26 16z"
+                                            ></path>
+                                        </svg>
+                                        <span class="button-children">
+                                            <span class="recommend-funding-wrap-font-highlight"></span>
+                                            더보기<span class="recommend-funding-wrap-pagenum">
+                                                <span class="recommend-funding-wrap-font-highlight">
+                                        </span>
+                                    </span>
+                                </button>
+                            </div>
+{#                        <div class="contest-pagination">#}
+{#                            <div class="pagination-btn-group">#}
+{#                                <button#}
+{#                                    class="pagination-prev pagination-first-page"#}
+{#                                    disabled=""#}
+{#                                    aria-label="이전 목록"#}
+{#                                >#}
+{#                                    <svg#}
+{#                                        viewBox="0 0 24 24"#}
+{#                                        fill="none"#}
+{#                                        focusable="false"#}
+{#                                        role="presentation"#}
+{#                                        class="withicon-icon"#}
+{#                                        aria-hidden="true"#}
+{#                                    >#}
+{#                                        <path#}
+{#                                            fill-rule="evenodd"#}
+{#                                            clip-rule="evenodd"#}
+{#                                            d="M16.076 2.576l.848.848L8.35 12l8.575 8.576-.848.848L6.65 12l9.425-9.424z"#}
+{#                                        ></path>#}
+{#                                    </svg></button#}
+{#                                ><button class="pagination-next" aria-label="다음 목록">#}
+{#                                    <svg#}
+{#                                        viewBox="0 0 24 24"#}
+{#                                        fill="none"#}
+{#                                        focusable="false"#}
+{#                                        role="presentation"#}
+{#                                        class="withicon-icon"#}
+{#                                        aria-hidden="true"#}
+{#                                    >#}
+{#                                        <path#}
+{#                                            fill-rule="evenodd"#}
+{#                                            clip-rule="evenodd"#}
+{#                                            d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"#}
+{#                                        ></path>#}
+{#                                    </svg>#}
+{#                                </button>#}
+{#                            </div>#}
+{#                            <ul class="pagination-pagelist" aria-label="pagination">#}
+{#                                <li class="pagination-listitem pagination-active">#}
+{#                                    <button type="button">1</button>#}
+{#                                </li>#}
+{#                                <li class="pagination-listitem"><button type="button">2</button></li>#}
+{#                                <li class="pagination-listitem"><button type="button">3</button></li>#}
+{#                                <li class="pagination-listitem"><button type="button">4</button></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+                    </div>
+                    <ul class="earlybird-desktop-earlybird-list">
+{#                        <li class="earlybird-desktop-list-item">#}
+{#                            <a href="">#}
+{#                                <div class="card-type-project-card">#}
+{#                                    <div class="commons-thumbnail-card">#}
+{#                                        <img src="" alt="" class="card-thumbnail-card">#}
+{#                                    </div>#}
+{#                                    <div class="card-type-card-content">#}
+{#                                        <div>#}
+{#                                            <p class="card-type-type">대회</p>#}
+{#                                            <div class="card-type-content">#}
+{#                                                <em class="commons-title"#}
+{#                                                    >지금 내 모습으로 남기는 영정사진 [조용재 작가의 젊은날의 초상]</em#}
+{#                                                >#}
+{#                                                <p class="commons-summary">#}
+{#                                                    <span class="commons-rate">1280%</span>#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="card-type-earlybird-content">#}
+{#                                            <dl>#}
+{#                                                <dt class="blind-text-text-hidden">옵션명</dt>#}
+{#                                                <dd class="card-type-title">#}
+{#                                                    [스페셜 리워드] 온 가족 추억사진 + 의미사진 4장#}
+{#                                                </dd>#}
+{#                                                <dt class="blind-text-text-hidden">옵션내용</dt>#}
+{#                                                <dd class="card-type-description">#}
+{#                                                    - 온 가족 함께 하는 촬영 보정본 2각 (각 컬러&amp;흑백) : 인원 제한#}
+{#                                                    없음 - 개인 의미사진 보정본 4장(각 흑백&amp;컬러) - 원본 사진 전체#}
+{#                                                    제공 - 촬영시간 : 최고의 표정과 자세로 표현 될 때까지 *수령하신#}
+{#                                                    촬영권은2024년 2월 15일부터 2024년 4월 31일까지 원하시는 날짜에 예약#}
+{#                                                    가능합니다 **결과물은 촬영 후 일주일 이내에 발송 됩니다.#}
+{#                                                </dd>#}
+{#                                                <dt class="blind-text-text-hidden">옵션금액</dt>#}
+{#                                                <dd class="card-type-subcontent">820,000원</dd>#}
+{#                                            </dl>#}
+{#                                        </div>#}
+{#                                        <div class="card-type-link-btn">#}
+{#                                            지금 참여하기<svg#}
+{#                                                viewBox="0 0 24 24"#}
+{#                                                fill="none"#}
+{#                                                focusable="false"#}
+{#                                                role="presentation"#}
+{#                                                class="withicon-icon withicon-inline"#}
+{#                                                aria-hidden="true"#}
+{#                                            >#}
+{#                                                <path#}
+{#                                                    fill-rule="evenodd"#}
+{#                                                    clip-rule="evenodd"#}
+{#                                                    d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"#}
+{#                                                ></path>#}
+{#                                            </svg>#}
+{#                                        </div>#}
+{#                                    </div></div#}
+{#                            ></a>#}
+{#                        </li>#}
+                        {% for exhibition in exhibitions|slice:":3" %}
+                            {% with first_exhibition_file=exhibition.exhibitionfile_set.first %}
+                                <li class="earlybird-desktop-list-item">
+                                    <a href="">
+                                        <div class="card-type-project-card">
+                                            <div class="commons-thumbnail-card">
+                                                {% if first_exhibition_file %}
+                                                    <img class="thumbnail-image" alt="" src="/upload/{{ first_exhibition_file.path }}" style="width: 100%; height: 100%"/>
+                                                {% endif %}
+                                            </div>
+                                            <div class="card-type-card-content">
+                                                <div>
+                                                    <p class="card-type-type">공모전</p>
+                                                    <div class="card-type-content">
+                                                        <em class="commons-title"
+                                                            >{{ exhibition.exhibition_title }}</em
+                                                        >
+                                                        <p class="commons-summary">
+                                                            <span class="commons-rate">{{ exhibition.exhibition_content}}</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+{#                                                <div class="card-type-earlybird-content">#}
+{#                                                    <dl>#}
+{#                                                        <dt class="blind-text-text-hidden">옵션명</dt>#}
+{#                                                        <dd class="card-type-title">[슈퍼 얼리버드] 바디무스 듀오 패키지</dd>#}
+{#                                                        <dt class="blind-text-text-hidden">옵션내용</dt>#}
+{#                                                        <dd class="card-type-description">#}
+{#                                                            [31.4%할인] 총 제품 정가 : 86,000원 미소스 바디 무스 - 자스민 200mL#}
+{#                                                            * 2EA#}
+{#                                                        </dd>#}
+{#                                                        <dt class="blind-text-text-hidden">옵션금액</dt>#}
+{#                                                        <dd class="card-type-subcontent">59,000원</dd>#}
+{#                                                    </dl>#}
+{#                                                </div>#}
+{#                                                <div class="card-type-link-btn">#}
+{#                                                    지금 참여하기<svg#}
+{#                                                        viewBox="0 0 24 24"#}
+{#                                                        fill="none"#}
+{#                                                        focusable="false"#}
+{#                                                        role="presentation"#}
+{#                                                        class="withicon-icon withicon-inline"#}
+{#                                                        aria-hidden="true"#}
+{#                                                    >#}
+{#                                                        <path#}
+{#                                                            fill-rule="evenodd"#}
+{#                                                            clip-rule="evenodd"#}
+{#                                                            d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"#}
+{#                                                        ></path>#}
+{#                                                    </svg>#}
+{#                                                </div>#}
+                                            </div></div
+                                    ></a>
+                                </li>
+                            {% endwith %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--원랩 홍보-->
+        <div class="main-wrap">
+            <div class="static-banner">
+                <section>
+                    <a class="static-banner-container" href="">
+                        <h4 class="open-static-banner-title">원랩에서 지금 바로 다양한 모임을 시작하세요</h4>
+                        <p class="open-static-banner-content">이미 많은 회원들이 원랩을 경험했어요</p>
+                        <button class="static-banner-button" type="button">
+                            <span><span class="button-children">프로젝트 만들기</span></span>
+                        </button>
+                    </a>
+                </section>
+            </div>
+        </div>
+        <!--트렌드-->
+        <article class="trend-container">
+            <div class="main-wrap">
+                <div class="trend-app-wrapper">
+                    <h2 class="trend-app-title">트렌드</h2>
+                    <section class="hot-funding-list-container">
+                        <div class="hot-funding-list-title-wrap">
+                            <div class="hot-funding-list-title">
+                                <div class="title-content-wrapper-title">
+                                    <p><em>#급상승</em> 커뮤니티</p>
+                                </div>
+                            </div>
+                            <div class="hot-funding-list-tooltip">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-symbol">
+                                        <div aria-hidden="true" style="display: none;">
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon tooltip-tooltip-active"
+                                                aria-hidden="true"
+                                            >
+                                                <path fill="none" d="M0 0h40v40H0z"></path>
+                                                <path
+                                                    d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <div aria-hidden="true" style="display: block;">
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon tooltip-tooltip"
+                                                aria-hidden="true"
+                                            >
+                                                <path fill="none" d="M0 0h40v40H0z"></path>
+                                                <path
+                                                    d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"
+                                                ></path>
+                                                <path
+                                                    d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div
+                                        role="tooltip"
+                                        id="trendHotFundingProjectTooltip"
+                                        class="tooltip-messagebox"
+                                        style="width: 241px; display: none;"
+                                    >
+                                        <p>
+                                            <em>급상승 프로젝트</em><br />24시간을 기준으로 전날 대비 달성률이 높은
+                                            프로젝트가 노출됩니다. 단, 의도적으로 악용되는 경우 노출에서 제외될 수
+                                            있습니다.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="hot-funding-list-content">
+{#                            <li class="hot-funding-list-card">#}
+{#                                <div class="curation-vertical-card-container">#}
+{#                                    <a class="curation-vertical-card-content" href=""#}
+{#                                        ><div class="curation-vertical-card-thumbnail-box">#}
+{#                                            <div class="curation-vertical-card-thumbnail-wrap">#}
+{#                                                <div class="thumbnail-image-container">#}
+{#                                                    <img class="thumbnail-image" alt="" src="" />#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="curation-vertical-card-info-box">#}
+{#                                            <div class="curation-vertical-card-badge-wrapper">#}
+{#                                                <span class="label-badge">예약구매</span>#}
+{#                                            </div>#}
+{#                                            <div class="curation-vertical-card-info">#}
+{#                                                <p class="info-string-wrapper-info-string-wrapper">13,033% 달성</p>#}
+{#                                                <strong class="title-title"#}
+{#                                                    >[앵콜|업그레이드] 15구 괴물스펙! C타입 단자까지 품은 타워형#}
+{#                                                    멀티탭</strong#}
+{#                                                >#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="card-spinner-container">#}
+{#                                            <div class="card-spinner-loader" style="width: 32px; height: 32px;">#}
+{#                                                <svg viewBox="25 25 50 50" aria-label="Loading">#}
+{#                                                    <g class="loader-circular">#}
+{#                                                        <circle#}
+{#                                                            class="loader-path"#}
+{#                                                            cx="50"#}
+{#                                                            cy="50"#}
+{#                                                            r="20"#}
+{#                                                            fill="none"#}
+{#                                                            stroke-width="4"#}
+{#                                                            stroke-miterlimit="10"#}
+{#                                                        ></circle>#}
+{#                                                    </g>#}
+{#                                                </svg>#}
+{#                                            </div></div#}
+{#                                    ></a>#}
+{#                                </div>#}
+{#                            </li>#}
+                            {% for onelab in onelabs|slice:":6"  %}
+                                {% with first_onelab_file=onelab.onelabfile_set.first %}
+                                    <li class="hot-funding-list-card">
+                                        <div class="curation-vertical-card-container">
+                                            <a class="curation-vertical-card-content" href=""
+                                                ><div class="curation-vertical-card-thumbnail-box">
+                                                    <div class="curation-vertical-card-thumbnail-wrap">
+                                                        {% if first_onelab_file %}
+                                                            <img class="thumbnail-image" alt="" src="/upload/{{ first_onelab_file.path }}" style="width: 100%; height: 100%"/>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="curation-vertical-card-info-box">
+{#                                                    <div class="curation-vertical-card-badge-wrapper">#}
+{#                                                        <span class="label-badge">예약구매</span>#}
+{#                                                    </div>#}
+                                                    <div class="curation-vertical-card-info">
+                                                        <p class="info-string-wrapper-info-string-wrapper">{{ onelab.onelab_main_title }}</p>
+                                                        <strong class="title-title"
+                                                            >{{ onelab.onelab_content }}</strong
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="card-spinner-container">
+                                                    <div class="card-spinner-loader" style="width: 32px; height: 32px;">
+                                                        <svg viewBox="25 25 50 50" aria-label="Loading">
+                                                            <g class="loader-circular">
+                                                                <circle
+                                                                    class="loader-path"
+                                                                    cx="50"
+                                                                    cy="50"
+                                                                    r="20"
+                                                                    fill="none"
+                                                                    stroke-width="4"
+                                                                    stroke-miterlimit="10"
+                                                                ></circle>
+                                                            </g>
+                                                        </svg>
+                                                    </div></div
+                                            ></a>
+                                        </div>
+                                    </li>
+                                {% endwith %}
+                            {% endfor %}
+                        </ul>
+                    </section>
+                    <section class="like-funding-list-container">
+                        <div class="like-funding-list-title-wrap">
+                            <div class="like-funding-list-title">
+                                <div class="title-content-wrapper-title">
+                                    <p>
+                                        오늘 가장 많은 사람들이<br class="like-funding-list-break" /><em> #선택한</em>
+                                        자료공유
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="like-funding-list-tooltip">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-symbol" aria-describedby="trendLikeFundingProjectTooltip">
+                                        <div aria-hidden="true" style="display: none;">
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon tooltip-tooltip-active"
+                                                aria-hidden="true"
+                                            >
+                                                <path fill="none" d="M0 0h40v40H0z"></path>
+                                                <path
+                                                    d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <div aria-hidden="true" style="display: block;">
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon tooltip-tooltip"
+                                                aria-hidden="true"
+                                            >
+                                                <path fill="none" d="M0 0h40v40H0z"></path>
+                                                <path
+                                                    d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"
+                                                ></path>
+                                                <path
+                                                    d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div
+                                        role="tooltip"
+                                        id="trendLikeFundingProjectTooltip"
+                                        class="tooltip-messagebox"
+                                        style="width: 241px; display: none;"
+                                    >
+                                        <p>
+                                            <em>오늘 가장 많은 사람들이 선택한 자료공유</em><br />
+                                            24시간 내 좋아요를 가장 많이 받은 자료가 노출됩니다.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="like-funding-list-content" style="padding: 45px;">
+{#                            <li class="like-funding-list-card">#}
+{#                                <div class="curation-vertical-card-container">#}
+{#                                    <a class="curation-vertical-card-content" href=""#}
+{#                                        ><div class="curation-vertical-card-thumbnail-box">#}
+{#                                            <div class="curation-vertical-card-thumbnail-wrap">#}
+{#                                                <div class="thumbnail-image-container">#}
+{#                                                    <img class="thumbnail-image" alt="" src="" />#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="curation-vertical-card-info-box">#}
+{#                                            <div class="curation-vertical-card-badge-wrapper">#}
+{#                                                <span class="label-badge">예약구매</span>#}
+{#                                            </div>#}
+{#                                            <div class="curation-vertical-card-info">#}
+{#                                                <p class="info-string-wrapper-info-string-wrapper">85,256% 달성</p>#}
+{#                                                <strong class="title-title"#}
+{#                                                    >34억 심플리웍스 | 모공 1위! 이번에도 저희가 해볼게요#}
+{#                                                    &lt;모공한번&gt;</strong#}
+{#                                                >#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="card-spinner-container">#}
+{#                                            <div class="card-spinner-loader" style="width: 32px; height: 32px;">#}
+{#                                                <svg viewBox="25 25 50 50" aria-label="Loading">#}
+{#                                                    <g class="loader-circular">#}
+{#                                                        <circle#}
+{#                                                            class="loader-path"#}
+{#                                                            cx="50"#}
+{#                                                            cy="50"#}
+{#                                                            r="20"#}
+{#                                                            fill="none"#}
+{#                                                            stroke-width="4"#}
+{#                                                            stroke-miterlimit="10"#}
+{#                                                        ></circle>#}
+{#                                                    </g>#}
+{#                                                </svg>#}
+{#                                            </div></div#}
+{#                                    ></a>#}
+{#                                </div>#}
+{#                            </li>#}
+                            {% for share in shares|slice:":8"  %}
+                                {% with first_share_file=share.sharefile_set.first %}
+                                    <li class="like-funding-list-card">
+                                    <div class="curation-vertical-card-container">
+                                        <a class="curation-vertical-card-content" href=""
+                                            ><div class="curation-vertical-card-thumbnail-box">
+{#                                                <div class="curation-vertical-card-thumbnail-wrap">#}
+{#                                                    {% if first_exhibition_file %}#}
+{#                                                        <img class="thumbnail-image" alt="" src="/upload/{{ first_share_file.path }}" style="width: 100%; height: 100%"/>#}
+{#                                                    {% endif %}#}
+{#                                                </div>#}
+                                            </div>
+                                            <div class="curation-vertical-card-info-box">
+                                                <div class="curation-vertical-card-badge-wrapper">
+                                                    <span class="label-badge">{{ share.share_choice_major }}</span>
+                                                    <span class="label-badge">{{ share.share_choice_grade}}</span>
+                                                </div>
+                                                <div class="curation-vertical-card-info">
+                                                    <p class="info-string-wrapper-info-string-wrapper">{{ share.share_points }}</p>
+                                                    <strong class="title-title"
+                                                        >{{ share.share_title }}
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                            <div class="card-spinner-container">
+                                                <div class="card-spinner-loader" style="width: 32px; height: 32px;">
+                                                    <svg viewBox="25 25 50 50" aria-label="Loading">
+                                                        <g class="loader-circular">
+                                                            <circle
+                                                                class="loader-path"
+                                                                cx="50"
+                                                                cy="50"
+                                                                r="20"
+                                                                fill="none"
+                                                                stroke-width="4"
+                                                                stroke-miterlimit="10"
+                                                            ></circle>
+                                                        </g>
+                                                    </svg>
+                                                </div></div
+                                            ></a>
+                                        </div>
+                                    </li>
+                                {% endwith %}
+                            {% endfor %}
+                        </ul>
+                    </section>
+                    <section class="supported-funding-list-container">
+                        <div class="supported-funding-list-title-wrap">
+                            <div class="supported-funding-list-title">
+                                <div class="title-content-wrapper-title">
+                                    <p>
+                                        오늘 가장 많은 사람들이<br class="supported-funding-list-break" /><em>
+                                            #공유한</em
+                                        >
+                                        장소목록
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="supported-funding-list-tooltip">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-symbol" aria-describedby="trendSupportedFundingProjectTooltip">
+                                        <div aria-hidden="true" style="display: none;">
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon tooltip-tooltip-active"
+                                                aria-hidden="true"
+                                            >
+                                                <path fill="none" d="M0 0h40v40H0z"></path>
+                                                <path
+                                                    d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <div aria-hidden="true" style="display: block;">
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon tooltip-tooltip"
+                                                aria-hidden="true"
+                                            >
+                                                <path fill="none" d="M0 0h40v40H0z"></path>
+                                                <path
+                                                    d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"
+                                                ></path>
+                                                <path
+                                                    d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div
+                                        role="tooltip"
+                                        id="trendSupportedFundingProjectTooltip"
+                                        class="tooltip-messagebox"
+                                        style="width: 215px; display: none;"
+                                    >
+                                        <p>
+                                            <em>오늘 가장 많은 사람들이 공유한 장소목록</em><br />오늘 하루 가장 많이
+                                            공유된 장소입니다.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="supported-funding-list-content">
+{#                            <li class="supported-funding-list-card">#}
+{#                                <div class="curation-vertical-card-container">#}
+{#                                    <a class="curation-vertical-card-content" href=""#}
+{#                                        ><div class="curation-vertical-card-thumbnail-box">#}
+{#                                            <div class="curation-vertical-card-thumbnail-wrap">#}
+{#                                                <div class="thumbnail-image-container">#}
+{#                                                    <img class="thumbnail-image" alt="" src="" />#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="curation-vertical-card-info-box">#}
+{#                                            <div class="curation-vertical-card-badge-wrapper">#}
+{#                                                <span class="label-badge">예약구매</span>#}
+{#                                            </div>#}
+{#                                            <div class="curation-vertical-card-info">#}
+{#                                                <p class="info-string-wrapper-info-string-wrapper">556% 달성</p>#}
+{#                                                <strong class="title-title"#}
+{#                                                    >[와디즈 Only] 원어민은 영어패턴을 이렇게 생각합니다!</strong#}
+{#                                                >#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="card-spinner-container">#}
+{#                                            <div class="card-spinner-loader" style="width: 32px; height: 32px;">#}
+{#                                                <svg viewBox="25 25 50 50" aria-label="Loading">#}
+{#                                                    <g class="loader-circular">#}
+{#                                                        <circle#}
+{#                                                            class="loader-path"#}
+{#                                                            cx="50"#}
+{#                                                            cy="50"#}
+{#                                                            r="20"#}
+{#                                                            fill="none"#}
+{#                                                            stroke-width="4"#}
+{#                                                            stroke-miterlimit="10"#}
+{#                                                        ></circle>#}
+{#                                                    </g>#}
+{#                                                </svg>#}
+{#                                            </div></div#}
+{#                                    ></a>#}
+{#                                </div>#}
+{#                            </li>#}
+
+                            {% for place in places|slice:":6" %}
+                                {% with first_place_file=place.placefile_set.first %}
+                                    <li class="supported-funding-list-card">
+                                        <div class="curation-vertical-card-container">
+                                            <a class="curation-vertical-card-content" href=""
+                                                ><div class="curation-vertical-card-thumbnail-box">
+                                                    <div class="curation-vertical-card-thumbnail-wrap">
+                                                        <div class="thumbnail-image-container">
+                                                            {% if first_place_file %}
+                                                                <img class="thumbnail-image" alt="" src="/upload/{{ first_place_file.path }}" />
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="curation-vertical-card-info-box">
+                                                    <div class="curation-vertical-card-badge-wrapper">
+                                                        <span class="label-badge">{{ place.school.school_name }}</span>
+                                                    </div>
+                                                    <div class="curation-vertical-card-info">
+                                                        <p class="info-string-wrapper-info-string-wrapper">{{ place.place_points}}</p>
+                                                        <strong class="title-title"
+                                                            >{{place.place_title}}</strong
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="card-spinner-container">
+                                                    <div class="card-spinner-loader" style="width: 32px; height: 32px;">
+                                                        <svg viewBox="25 25 50 50" aria-label="Loading">
+                                                            <g class="loader-circular">
+                                                                <circle
+                                                                    class="loader-path"
+                                                                    cx="50"
+                                                                    cy="50"
+                                                                    r="20"
+                                                                    fill="none"
+                                                                    stroke-width="4"
+                                                                    stroke-miterlimit="10"
+                                                                ></circle>
+                                                            </g>
+                                                        </svg>
+                                                    </div></div
+                                            ></a>
+                                        </div>
+                                    </li>
+                                {% endwith %}
+                            {% endfor %}
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </article>
+        <!--푸터-->
+        <footer id="footer" class="web-footer">
+            <div class="footer-menu-container">
+                <div class="footer-menu-bar">
+                    <div class="footer-menu-left">
+                        <div class="footer-menu-menu" id="btn-a">
+                            정책 · 약관<svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                focusable="false"
+                                role="presentation"
+                                class="withicon-icon linker-linker-icon"
+                                aria-hidden="true"
+                                style="width: 16px; height: 16px;"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                ></path>
+                            </svg>
+                            <div class="menu-a" style="width: 230px;">
+                                <ul class="link-menu-block">
+                                    <li>
+                                        <a class="link-menu-link" href="" target="_blank" rel="noopener noreferrer"
+                                            >공통 정책·약관
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon link-menu-open-link-icon"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"
+                                                ></path>
+                                                <path
+                                                    d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="link-menu-link" href="" target="_blank" rel="noopener noreferrer"
+                                            >원랩 정책·약관
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon link-menu-open-link-icon"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"
+                                                ></path>
+                                                <path
+                                                    d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="link-menu-link" href="" target="_blank" rel="noopener noreferrer"
+                                            >원랩파이낸스 정책·약관
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon link-menu-open-link-icon"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"
+                                                ></path>
+                                                <path
+                                                    d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-menu-menu-bold" id="btn-b">
+                            개인정보처리방침<svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                focusable="false"
+                                role="presentation"
+                                class="withicon-icon linker-linker-icon"
+                                aria-hidden="true"
+                                style="width: 16px; height: 16px;"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                ></path>
+                            </svg>
+                            <div class="menu-b" style="width: 270px;">
+                                <ul class="link-menu-block">
+                                    <li>
+                                        <a class="link-menu-link" href="" target="_blank" rel="noopener noreferrer"
+                                            >원랩 개인정보처리방침
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon link-menu-open-link-icon"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"
+                                                ></path>
+                                                <path
+                                                    d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="link-menu-link" href="" target="_blank" rel="noopener noreferrer"
+                                            >원랩파이낸스 개인정보처리방침
+                                            <svg
+                                                viewBox="0 0 40 40"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="withicon-icon link-menu-open-link-icon"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"
+                                                ></path>
+                                                <path
+                                                    d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-menu-right">
+                        <div class="footer-menu-menu" id="btn-c">
+                            제휴문의<svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                focusable="false"
+                                role="presentation"
+                                class="withicon-icon linker-linker-icon"
+                                aria-hidden="true"
+                                style="width: 16px; height: 16px;"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                ></path>
+                            </svg>
+                            <div class="menu-c">
+                                <div class="contract-line-contact-menu">
+                                    <span class="contact-menu-title">광고 서비스 문의</span
+                                    ><a href="" class="contact-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        >ad@wadiz.kr</a
+                                    ><span class="contact-menu-sep">|</span
+                                    ><a href="" class="contact-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        >광고상품보기</a
+                                    >
+                                </div>
+                                <div class="contract-line-contact-menu">
+                                    <span class="contact-menu-title">제휴 문의</span
+                                    ><a href="" class="contact-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        >partner@wadiz.kr</a
+                                    >
+                                </div>
+                                <div class="contract-line-contact-menu">
+                                    <span class="contact-menu-title">마케팅 제휴/PR 문의</span
+                                    ><a href="" class="contact-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        >mktpr@wadiz.kr</a
+                                    >
+                                </div>
+                                <div class="contract-line-contact-menu">
+                                    <span class="contact-menu-title">IP 제휴 문의</span
+                                    ><a href="" class="contact-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        >ip@wadiz.kr</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <a href="" class="footer-menu-menu-notice" target="_blank" rel="noopener noreferrer"
+                            >공지사항<svg
+                                viewBox="0 0 40 40"
+                                focusable="false"
+                                role="presentation"
+                                class="withicon-icon footer-menu-open-link-icon"
+                                aria-hidden="true"
+                            >
+                                <path d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"></path>
+                                <path
+                                    d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"
+                                ></path></svg></a
+                        ><a href="" class="footer-menu-menu-recru" target="_blank" rel="noopener noreferrer"
+                            >인재채용<svg
+                                viewBox="0 0 40 40"
+                                focusable="false"
+                                role="presentation"
+                                class="withicon-icon footer-menu-open-link-icon"
+                                aria-hidden="true"
+                            >
+                                <path d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"></path>
+                                <path
+                                    d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"
+                                ></path>
+                            </svg>
+                        </a>
+                        <div class="footer-menu-menu-sns" id="btn-d">
+                            SNS<svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                focusable="false"
+                                role="presentation"
+                                class="withicon-icon linker-linker-icon"
+                                aria-hidden="true"
+                                style="width: 16px; height: 16px;"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                ></path>
+                            </svg>
+                            <div class="menu-d">
+                                <div class="sns-menu-menu">
+                                    <a href="" class="sns-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        ><svg
+                                            viewBox="0 0 48 48"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon withicon-inline"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M36.65 28.633h-2.71V22.51c0-1.41-.82-2.167-2.08-2.167-1.408 0-2.311.863-2.311 2.608v5.68h-2.711V13.66h2.71v5.632c.652-.988 1.703-1.472 3.131-1.472 1.156 0 2.102.378 2.837 1.157.757.778 1.135 1.83 1.135 3.197v6.459zm-19.489-2.555c2 0 3.71-1.198 4.225-3.05h2.958c-.723 3.563-3.493 5.899-7.183 5.899-4.287 0-7.687-3.202-7.687-7.657 0-4.456 3.4-7.657 7.687-7.657 3.727 0 6.516 2.382 7.205 6.006h-2.95c-.448-1.97-2.217-3.198-4.255-3.198-2.882 0-4.8 2.058-4.8 4.849 0 2.79 2.18 4.808 4.8 4.808zM24 2.4c-11.267 0-20.4 8.458-20.4 18.89 0 7.706 3.223 11.385 7.638 14.738l.022.01v9.042c0 .427.485.671.828.417l7.736-5.753.166.072a22.03 22.03 0 0 0 4.01.366c11.267 0 20.4-8.458 20.4-18.891C44.4 10.858 35.267 2.4 24 2.4z"
+                                            ></path>
+                                        </svg>
+                                        펀딩</a
+                                    >
+                                </div>
+                                <div class="sns-menu-menu">
+                                    <a href="" class="sns-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        ><svg
+                                            viewBox="0 0 48 48"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon withicon-inline"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M44.4 24.12C44.4 12.787 35.267 3.6 24 3.6S3.6 12.787 3.6 24.12c0 10.242 7.46 18.732 17.212 20.271v-14.34h-5.18v-5.93h5.18v-4.522c0-5.143 3.046-7.983 7.706-7.983 2.232 0 4.566.4 4.566.4v5.05h-2.572c-2.534 0-3.325 1.582-3.325 3.205v3.85h5.658l-.904 5.93h-4.753v14.34C36.94 42.851 44.4 34.362 44.4 24.121"
+                                            ></path>
+                                        </svg>
+                                        펀딩</a
+                                    >
+                                </div>
+                                <div class="sns-menu-menu">
+                                    <a href="" class="sns-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        ><svg
+                                            viewBox="0 0 40 40"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon withicon-inline"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M25.7 12c.5 1.2-.3 2.2-1.2 3.1s-2.6 2.7-3.8 4.2-3.1 4.3-4.7 6.5l.3.3.7-.6a20.6 20.6 0 0 1 6-4.5 9.5 9.5 0 0 1 3.3-.8c1.7-.1 2.7 1 2.7 2.8a6.7 6.7 0 0 1-1.8 4.3A18.6 18.6 0 0 1 17 33.2a35.6 35.6 0 0 1-4.8.8c-.8.1-1.4.4-1.5 1.2s-2 2.1-3.5 2.6l2.4-4.2c-1.2-1-1.2-1-1.1-1.6l1.5.7 2.3-4c3.5-6 6.9-12 10.4-17.9A26.3 26.3 0 0 1 29.2 3a5.5 5.5 0 0 1 1.4-.9 2.2 2.2 0 0 1 1.6-.1c.3.2.3 1 .2 1.5a10.7 10.7 0 0 1-2.7 4.9c-1.2 1.4-2.6 2.4-4 3.6zM12 33.2l1.6-.2c4-.6 7.6-2.1 10.4-5.2a9 9 0 0 0 2.4-4.6c.2-1.2-.4-1.9-1.6-1.6l-1.4.5c-4.9 2.5-8.3 6.5-11.4 11.1zM30.7 3.8l-.2-.2-6.2 7.6.2.2a15.5 15.5 0 0 0 6.2-7.6zM24 11.7l-2.8 4.7 2.7-2.5a1.4 1.4 0 0 0 .1-2.2zm8.4 25.8h-21l-.7.3c2.7.5 21.6.3 22.2-.2z"
+                                            ></path>
+                                        </svg>
+                                        브런치</a
+                                    ><span class="sns-menu-space"></span
+                                    ><a href="" class="sns-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        ><svg
+                                            viewBox="0 0 32 32"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon withicon-inline"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M16 5.52h5.2l1.44.16.88.32.8.4.72.56.56.64c.131.23.241.496.315.777l.245.903c.121.445.207.964.239 1.498q.001.982.081 1.862T26.4 16v5.278c0 .511-.058 1.009-.169 1.486a3.805 3.805 0 0 1-.321.857 3.341 3.341 0 0 1-.398.792l-.472.708-.64.56-.8.4-.88.24-1.44.24h-10.4l-1.44-.16-.88-.32-.8-.4-.72-.56-.64-.8a3.267 3.267 0 0 1-.315-.777l-.325-.903a6.712 6.712 0 0 1-.16-1.438q0-.962-.08-1.842t0-3.36v-3.36q0-.8.08-1.84a9.087 9.087 0 0 1 .169-1.577 3.87 3.87 0 0 1 .32-.843c.093-.284.228-.549.397-.789l.473-.63.64-.56.8-.32.88-.32 1.52-.16h5.2zm0-2.32h-5.28l-1.76.16-1.36.4-1.2.72a4.335 4.335 0 0 0-1.038.798 5.503 5.503 0 0 0-.868 1.097L3.84 7.6a9.135 9.135 0 0 0-.388 1.294 11.965 11.965 0 0 0-.25 1.79Q3.2 11.76 3.12 12.56T3.2 16v3.44q0 .8.08 1.84c.045.655.13 1.258.255 1.845.095.44.233.896.405 1.333l.54 1.141.88 1.12 1.04.88 1.28.64 1.36.32 1.76.24h10.48l1.76-.16 1.36-.4 1.2-.64 1.12-.88c.296-.328.561-.695.784-1.089.225-.374.414-.77.562-1.185a9.74 9.74 0 0 0 .402-1.34c.13-.599.215-1.23.251-1.874q.001-.992.081-1.872t0-3.36v-3.44q0-.88-.08-1.84a13.088 13.088 0 0 0-.255-1.845 8.703 8.703 0 0 0-.405-1.334l-.54-1.141a6.56 6.56 0 0 0-.881-1.121 3.86 3.86 0 0 0-1.021-.869l-1.218-.65-1.36-.4-1.76-.24H16zm0 6.24l-.125-.001c-.878 0-1.715.177-2.477.497a6.508 6.508 0 0 0-3.382 3.461c-.334.787-.519 1.654-.519 2.563s.185 1.776.52 2.563a6.724 6.724 0 0 0 1.346 2.039 6.542 6.542 0 0 0 4.664 1.947c.915 0 1.786-.187 2.577-.525a6.585 6.585 0 0 0 3.381-3.382c.341-.798.53-1.678.53-2.602s-.189-1.804-.53-2.603a6.328 6.328 0 0 0-1.344-2.037 6.747 6.747 0 0 0-2.035-1.343 6.416 6.416 0 0 0-2.601-.577zm0 10.8l-.08.001a4.24 4.24 0 0 1-4.24-4.24V16a4.32 4.32 0 1 1 8.64 0v.001a4.24 4.24 0 0 1-4.24 4.24l-.084-.001zm8.4-11.12a1.52 1.52 0 1 1-.479-1.119c.295.264.48.647.48 1.073l-.001.048z"
+                                            ></path>
+                                        </svg>
+                                        인스타그램</a
+                                    >
+                                </div>
+                                <div class="sns-menu-menu">
+                                    <a href="" class="sns-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        ><svg
+                                            viewBox="0 0 32 32"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon withicon-inline"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M8.88 14.88a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0zm9.84-.08a1.04 1.04 0 1 1-2.081-.001 1.04 1.04 0 0 1 2.081.001z"
+                                            ></path>
+                                            <path
+                                                d="M26.56 4H5.44A3.84 3.84 0 0 0 1.6 7.84V20.4a3.84 3.84 0 0 0 3.84 3.84h7.44l2.56 6s.16.48.56.48.56-.48.56-.48l2.64-6h7.36a3.84 3.84 0 0 0 3.84-3.84V7.84A3.84 3.84 0 0 0 26.56 4zM10.64 15.04c0 2.32-2.4 2.32-2.4 2.32l-.051.001c-.54 0-1.029-.214-1.389-.561l.001.401h-1.68v-7.04h1.68v2.64c.4-.72 1.6-.64 1.6-.64 2.56.24 2.24 2.88 2.24 2.88zm3.04-2.72v4.88H12v-4.8c0-.64-.8-.8-.8-.8V9.92a2.32 2.32 0 0 1 2.48 2.488zm4 5.04l-.081.001a2.72 2.72 0 0 1-2.719-2.637 2.721 2.721 0 0 1 2.804-2.644l.077-.001a2.72 2.72 0 0 1 2.719 2.637v.005a2.72 2.72 0 0 1-2.72 2.72l-.084-.001zm9.28 0l.001.081a2.4 2.4 0 0 1-2.4 2.4c-.029 0-.057 0-.085-.002h-.796v-1.6h.48s1.04.08 1.04-1.52c0 0-.24.64-1.68.64a2.242 2.242 0 0 1-2.16-2.156v-.804a2.401 2.401 0 0 1 2.316-2.32 1.676 1.676 0 0 1 1.441.637l.003-.556h1.68z"
+                                            ></path>
+                                            <path
+                                                d="M25.28 14.8a1.04 1.04 0 1 1-2.081-.001 1.04 1.04 0 0 1 2.081.001z"
+                                            ></path>
+                                        </svg>
+                                        블로그</a
+                                    ><span class="sns-menu-space"></span
+                                    ><a href="" class="sns-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        ><svg
+                                            viewBox="0 0 32 32"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon withicon-inline"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M22 16a.88.88 0 0 0-.475-.878L13.52 10.08a.96.96 0 0 0-1.044.002.96.96 0 0 0-.476.88V21.04l-.001.048c0 .354.192.663.477.83l.485.162.56-.16 8-5.04a.88.88 0 0 0 .48-.884zm8 0v2.32q0 .8-.16 2.16a17.451 17.451 0 0 1-.34 2.434c-.133.645-.502 1.301-1.019 1.806a3.264 3.264 0 0 1-1.989.88c-2.751.261-5.936.409-9.155.409-.47 0-.939-.003-1.407-.009a103.562 103.562 0 0 1-10.813-.43c-.345-.055-1.007-.374-1.519-.852a3.604 3.604 0 0 1-1.114-1.894 18.217 18.217 0 0 1-.32-2.276Q2.08 19.2 2 18.32T2 16v-2.32q0-.8.16-2.16c.061-.865.175-1.659.34-2.434.156-.653.552-1.309 1.097-1.804a3.267 3.267 0 0 1 1.909-.881 99.415 99.415 0 0 1 9.158-.41c.47 0 .939.003 1.407.009a103.562 103.562 0 0 1 10.813.43c.345.055 1.007.374 1.519.852.55.493.947 1.15 1.113 1.894.143.675.256 1.469.32 2.276Q29.92 12.8 30 13.68T30 16z"
+                                            ></path>
+                                        </svg>
+                                        유튜브</a
+                                    >
+                                </div>
+                                <div class="sns-menu-menu">
+                                    <a href="" class="sns-menu-sub" target="_blank" rel="noopener noreferrer"
+                                        ><svg
+                                            viewBox="0 0 32 32"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="withicon-icon withicon-inline"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M29.36 7.76c-.907.42-1.96.729-3.065.874a5.675 5.675 0 0 0 2.334-2.995 11.546 11.546 0 0 1-3.357 1.308c-1.069-1.067-2.492-1.741-4.073-1.741a5.44 5.44 0 0 0-5.439 5.518c.003.452.062.893.168 1.314-4.615-.279-8.661-2.495-11.344-5.847-.493.757-.771 1.706-.771 2.72 0 1.882.955 3.54 2.407 4.517a5.244 5.244 0 0 1-2.489-.642l.029.014v.02a5.442 5.442 0 0 0 4.365 5.334L6.72 18.4H5.68c.725 2.184 2.738 3.736 5.117 3.76a10.873 10.873 0 0 1-6.741 2.32H2.639a15.37 15.37 0 0 0 8.399 2.48c10.081 0 15.601-8.32 15.601-15.6v-.72a11.215 11.215 0 0 0 2.694-2.838z"
+                                            ></path>
+                                        </svg>
+                                        트위터</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-container-container">
+                <div class="footer-container-inner">
+                    <section class="footer-container-left-section">
+                        <strong class="footer-container-title">원랩 고객센터</strong>
+                        <div class="footer-container-button-block">
+                            <button type="button" class="footer-container-direct-btn">
+                                채팅 상담하기<svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    focusable="false"
+                                    role="presentation"
+                                    class="withicon-icon"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                    ></path>
+                                </svg></button
+                            ><a href="" class="footer-container-direct-btn" target="_blank" rel="noreferrer"
+                                >문의 등록하기<svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    focusable="false"
+                                    role="presentation"
+                                    class="withicon-icon"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                    ></path></svg></a
+                            ><a href="" class="footer-container-direct-btn" target="_blank" rel="noreferrer"
+                                >도움말 센터 바로가기<svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    focusable="false"
+                                    role="presentation"
+                                    class="withicon-icon"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                    ></path></svg></a
+                            ><a href="" class="footer-container-direct-btn" target="_blank" rel="noreferrer"
+                                >Contact for Global<svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    focusable="false"
+                                    role="presentation"
+                                    class="withicon-icon"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M7.924 2.576l-.848.848L15.65 12l-8.575 8.576.848.848L17.35 12 7.924 2.576z"
+                                    ></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <dl class="footer-container-enable-time">
+                            <dt>상담 가능 시간</dt>
+                            <dd>평일 오전 9시 ~ 오후 6시 (주말, 공휴일 제외)</dd>
+                        </dl>
+                    </section>
+                    <section class="footer-container-right-section">
+                        <address>
+                            <ul class="footer-info-info">
+                                <li>원랩㈜</li>
+                                <li>대표이사 신혜성</li>
+                                <li>사업자등록번호 258-87-01370</li>
+                                <li>통신판매업신고번호 2021-성남분당C-1153</li>
+                                <li>경기 성남시 분당구 판교로 242 PDC A동 402호</li>
+                            </ul>
+                            <div class="footer-info-contact-info-wrap">
+                                <ul class="footer-info-contact-info">
+                                    <li>
+                                        <a href="" target="_blank" rel="noreferrer">이메일 상담 info@wadiz.kr</a>
+                                    </li>
+                                    <li>유선 상담 <a href="tel:1661-9056">1661-9056</a></li>
+                                </ul>
+                                <span class="footer-info-copyright">© onelab Co., Ltd.</span>
+                            </div>
+                        </address>
+                        <div class="footer-container-info-notice">
+                            <p>일부 상품의 경우 원랩는 통신판매중개자이며 통신판매 당사자가 아닙니다.</p>
+                            <p>
+                                해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각
+                                상품 페이지에서 구체적인 내용을 확인하시기 바랍니다.
+                            </p>
+                        </div>
+                        <div class="footer-container-app-store-section">
+                            <img
+                                src="https://theme.zdassets.com/theme_assets/13612819/cc34cc7bfae1dab45c2a08e3c5167fce24a7009a.png"
+                                alt=""
+                                id="google"
+                            />
+                            <a href="" target="_blank" class="icon-google-play" rel="noopener noreferrer">Android앱</a>
+                            <img
+                                src="https://theme.zdassets.com/theme_assets/13612819/0aa3f86bb1b2e28aaf28ea469a3e7a0cc680eb2d.png"
+                                alt=""
+                                id="apple"
+                            />
+                            <a href="" target="_blank" class="icon-apple" rel="noopener noreferrer">iOS앱</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </footer>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'member/js/main/main-list.js' %}"></script>
+    <script src="{% static 'member/js/main/main-page-banner.js' %}"></script>
+    <script src="{% static 'member/js/main/main-page-ranking-tab.js' %}"></script>
+    <script src="{% static 'member/js/main/main-page-AI.js' %}"></script>
+    <script src="{% static 'member/js/main/main-page-footer-menu-box.js' %}"></script>
+{% endblock %}
