@@ -148,18 +148,18 @@ DATABASES = {
         # DBMS 모듈 경로
         'ENGINE': 'django.db.backends.mysql',
         # DATABASE 이름
-        'NAME': 'ky_ai',
+        'NAME': 'ai1',
         # 계정 이름
-        'USER': 'ky_ai',
+        'USER': 'ai1',
         # 비밀번호
         'PASSWORD': '1234',
         # DBMS가 설치된 서버 PC의 IP
-        'HOST': '43.203.233.192',
+        'HOST': '43.201.28.101',
         # DBMS의 포트번호
         'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
-        }
+        # 'OPTIONS': {
+        #     'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
+        # }
     }
 }
 
