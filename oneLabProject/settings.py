@@ -157,9 +157,9 @@ DATABASES = {
         'HOST': '43.201.28.101',
         # DBMS의 포트번호
         'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
-        }
+        # 'OPTIONS': {
+        #     'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
+        # }
     }
 }
 
